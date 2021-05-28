@@ -2,7 +2,7 @@ const ud = require('urban-dictionary');
 const Discord = require('discord.js');
 
 function removeBrackets(text) {
-    return text.replace(/\[/g, '__').replace(/\]/g, '__');
+    return text.replace(/\[/g, '').replace(/\]/g, '');
 }
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
                 .setTitle(result.word)
                 .setURL(result.permalink)
                 .setDescription(removeBrackets(result.definition))
-                .setFooter(`*${removeBrackets(result.example)}*`)
+                .setFooter(removeBrackets(result.example))
                 .setTimestamp(result.written_on)
             );
         }).catch(() => event.reply(`no results found for **${payload}**`));
